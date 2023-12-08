@@ -1,0 +1,45 @@
+
+
+<div class="registration-container">
+    <h2>User Registration</h2>
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="fullName">Full Name:</label>
+        <input type="text" formControlName="fullName">
+        <div *ngIf="registrationForm.get('fullName').invalid && registrationForm.get('fullName').touched">
+          Full Name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" formControlName="email">
+        <div *ngIf="registrationForm.get('email').invalid && registrationForm.get('email').touched">
+          Email is required and must be a valid email address.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" formControlName="password">
+        <div *ngIf="registrationForm.get('password').invalid && registrationForm.get('password').touched">
+          Password is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" formControlName="confirmPassword">
+        <div *ngIf="registrationForm.get('confirmPassword').invalid && registrationForm.get('confirmPassword').touched">
+          Passwords do not match.
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" [disabled]="registrationForm.invalid">Register</button>
+      </div>
+    </form>
+    <div *ngIf="showSuccessMessage" class="success-message">
+      Registration successful! User details logged to console.
+    </div>
+    <div *ngIf="showErrorMessage" class="error-message">
+      Please fix the form errors.
+    </div>
+  </div>
+  
